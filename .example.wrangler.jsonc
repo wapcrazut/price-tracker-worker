@@ -1,0 +1,31 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "price-tracker-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "", // adjust to your deployment date
+  "triggers": {
+    "crons": ["0 8 * * *"] // every day at 08:00 UTC
+  },
+  "kv_namespaces": [
+    {
+      "binding": "PRICES",
+      "id": "", // your KV namespace ID here
+      "remote": false
+    }
+  ],
+  "vars": {
+    "ITEMS": [
+      {
+        "name": "Rubber Duck Toy",
+        "url": "https://www.amazon.com/Large-Squeak-Rubber-Shower-Inches/dp/B07PB9GVPT",
+        "css": "#corePriceDisplay_desktop_feature_div .a-price-whole",
+        "currency": "$", // € for Euro, $ for USD
+        "enabled": false
+      },
+    ]
+  }
+}
